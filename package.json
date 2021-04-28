@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./homeworks/**/*.js",
-    "test": "jest hw3.test.js",
+    "test": "jest hw4.test.js",
     "prepare": "husky install"
   },
   "lint-staged": {
