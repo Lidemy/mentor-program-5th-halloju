@@ -13,25 +13,32 @@ const options = {
 }
 
 const req = https.request(options, (res) => {
-  let data = ''
+  if (res.statusCode >= 200 && res.statusCode < 300) {
+    let data = ''
+    res.on('data', (chunck) => {
+      data += chunck
+    })
 
-  res.on('data', (chunck) => {
-    data += chunck
-  })
-
-  res.on('end', () => {
-    const parsedData = JSON.parse(data)
-    const streamData = {}
-    const sortable = []
-    for (let i = 0; i < parsedData.streams.length; i++) {
-      streamData[parsedData.streams[i].channel._id] = parsedData.streams[i].channel.name
-      sortable.push([parsedData.streams[i].channel._id, parsedData.streams[i].viewers])
-    }
-    sortable.sort((a, b) => b[1] - a[1])
-    for (let j = 0; j < Math.min(200, sortable.length); j++) {
-      console.log(`${sortable[j][0]} ${streamData[sortable[j][0]]}`)
-    }
-  })
+    res.on('end', () => {
+      let parsedData
+      try {
+        parsedData = JSON.parse(data)
+      } catch (err) {
+        console.log(err)
+        return
+      }
+      const streamData = {}
+      const sortable = []
+      for (let i = 0; i < parsedData.streams.length; i++) {
+        streamData[parsedData.streams[i].channel._id] = parsedData.streams[i].channel.name
+        sortable.push([parsedData.streams[i].channel._id, parsedData.streams[i].viewers])
+      }
+      sortable.sort((a, b) => b[1] - a[1])
+      for (let j = 0; j < Math.min(200, sortable.length); j++) {
+        console.log(`${sortable[j][0]} ${streamData[sortable[j][0]]}`)
+      }
+    })
+  }
 })
 
 req.on('error', (error) => {

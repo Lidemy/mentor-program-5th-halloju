@@ -45,24 +45,30 @@ function parseArgs(args) {
 
 const { options, data } = parseArgs(process.argv)
 const req = https.request(options, (res) => {
-  let body = ''
+  if (res.statusCode >= 200 && res.statusCode < 300) {
+    let body = ''
 
-  res.on('data', (chunck) => {
-    body += chunck
-  })
+    res.on('data', (chunck) => {
+      body += chunck
+    })
 
-  res.on('end', () => {
-    const parsedData = JSON.parse(body)
-    if (parsedData.length) {
+    res.on('end', () => {
       let bookInfo = ''
-      for (let i = 0; i < parsedData.length; i++) {
-        bookInfo = Object.values(parsedData[i])
-        console.log(`${bookInfo[0]} ${bookInfo[1]}`)
+      try {
+        bookInfo = JSON.parse(body)
+      } catch (err) {
+        console.log(err)
+        return
       }
-    } else {
-      console.log(`${parsedData.id} ${parsedData.name}`)
-    }
-  })
+      if (bookInfo.length) {
+        for (let i = 0; i < bookInfo.length; i++) {
+          console.log(`${bookInfo[i].id} ${bookInfo[i].name}`)
+        }
+      } else {
+        console.log(`${bookInfo.id} ${bookInfo.name}`)
+      }
+    })
+  }
 })
 
 req.on('error', (error) => {

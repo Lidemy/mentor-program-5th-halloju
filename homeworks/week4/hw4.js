@@ -12,18 +12,26 @@ const options = {
 }
 
 const req = https.request(options, (res) => {
-  let data = ''
+  if (res.statusCode >= 200 && res.statusCode < 300) {
+    let data = ''
 
-  res.on('data', (chunck) => {
-    data += chunck
-  })
+    res.on('data', (chunck) => {
+      data += chunck
+    })
 
-  res.on('end', () => {
-    const parsedData = JSON.parse(data)
-    for (let i = 0; i < parsedData.top.length; i++) {
-      console.log(`${parsedData.top[i].viewers} ${parsedData.top[i].game.name}`)
-    }
-  })
+    res.on('end', () => {
+      let parsedData
+      try {
+        parsedData = JSON.parse(data)
+      } catch (err) {
+        console.log(err)
+        return
+      }
+      for (let i = 0; i < parsedData.top.length; i++) {
+        console.log(`${parsedData.top[i].viewers} ${parsedData.top[i].game.name}`)
+      }
+    })
+  }
 })
 
 req.on('error', (error) => {

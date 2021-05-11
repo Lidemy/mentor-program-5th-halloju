@@ -1,27 +1,32 @@
 const https = require('https')
-const process = require('process')
 
 const options = {
   hostname: 'lidemy-book-store.herokuapp.com',
-  path: `/books?_limit=${process.argv[2]}`,
+  path: '/books?_limit=10',
   method: 'GET'
 }
 
 const req = https.request(options, (res) => {
-  let data = ''
+  if (res.statusCode >= 200 && res.statusCode < 300) {
+    let data = ''
 
-  res.on('data', (chunck) => {
-    data += chunck
-  })
+    res.on('data', (chunck) => {
+      data += chunck
+    })
 
-  res.on('end', () => {
-    const parsedData = JSON.parse(data)
-    let bookInfo = ''
-    for (let i = 0; i < parsedData.length; i++) {
-      bookInfo = Object.values(parsedData[i])
-      console.log(`${bookInfo[0]} ${bookInfo[1]}`)
-    }
-  })
+    res.on('end', () => {
+      let bookInfo
+      try {
+        bookInfo = JSON.parse(data)
+      } catch (err) {
+        console.log(err)
+        return
+      }
+      for (let i = 0; i < bookInfo.length; i++) {
+        console.log(`${bookInfo[i].id} ${bookInfo[i].name}`)
+      }
+    })
+  }
 })
 
 req.on('error', (error) => {
