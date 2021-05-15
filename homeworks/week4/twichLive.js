@@ -1,8 +1,9 @@
 const https = require('https')
+const process = require('process')
 
 const options = {
   hostname: 'api.twitch.tv',
-  path: '/kraken/games/top',
+  path: `/kraken/streams/?game=${process.argv[2]}`,
   port: 443,
   method: 'GET',
   headers: {
@@ -14,7 +15,6 @@ const options = {
 const req = https.request(options, (res) => {
   if (res.statusCode >= 200 && res.statusCode < 300) {
     let data = ''
-
     res.on('data', (chunck) => {
       data += chunck
     })
@@ -27,8 +27,15 @@ const req = https.request(options, (res) => {
         console.log(err)
         return
       }
-      for (let i = 0; i < parsedData.top.length; i++) {
-        console.log(`${parsedData.top[i].viewers} ${parsedData.top[i].game.name}`)
+      const streamData = {}
+      const sortable = []
+      for (let i = 0; i < parsedData.streams.length; i++) {
+        streamData[parsedData.streams[i].channel._id] = parsedData.streams[i].channel.name
+        sortable.push([parsedData.streams[i].channel._id, parsedData.streams[i].viewers])
+      }
+      sortable.sort((a, b) => b[1] - a[1])
+      for (let j = 0; j < Math.min(200, sortable.length); j++) {
+        console.log(`${sortable[j][0]} ${streamData[sortable[j][0]]}`)
       }
     })
   }
