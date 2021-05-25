@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>報名表單</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div class="debug">
+
+    <div class="wrapper">
+      <form class="sheet">
+        <h1 class="title">新拖延運動報名表單</h1>
+
+        <p class="info">活動日期：2020/12/10 ~ 2020/12/11
+          <br>
+        活動地點：台北市大安區新生南路二段1號</p>
+
+        <div class="require">* 必填</div>
+    
+        <div class="question required">暱稱 </div>
+        <input type="text" class="answer" value="您的回答" onfocus="this.value=''"/>
+
+        <div class="question required">電子郵件 </div>
+        <input type="text" value="您的電子郵件" class="answer" onfocus="this.value=''"/>
+
+        <div class="question required">手機號碼 </div>
+        <input type="text" value="您的手機號碼" class="answer" onfocus="this.value=''" />
+
+        <div class="question required">報名類型 </div>
+          <div class="choose">
+            <div>
+              <input type="radio" name="signUpType" id="bed" /> 
+              <label for="bed">躺在床上用想像力實作 </label>
+            </div>
+            
+          <!-- </div>
+          <div class="choose"> -->
+            <div>
+              <input type="radio" name="signUpType"  id="phone"/> 
+            <label for="phone">趴在地上滑手機找現成的</label>
+            </div>
+            
+          </div>
+
+        <div class="question required">怎麼知道這個活動的？ </div>
+        <input type="text" value="您的回答" class="answer" onfocus="this.value=''"/>
+
+        <div class="question">其他</div>
+        <div class='question_desc'>對活動的一些建議</div>
+        <input type="text" value="您的回答" class="answer" onfocus="this.value=''"/>
+
+        <div><input type="submit" value="提交"></div>
+        <div>請勿透過表單送出您的密碼。</div>
+      </form>
+    </div>
+    <footer>
+      © 2020 © Copyright. All rights Reserved.
+    </footer>
+  </div>
+    
+</body>
+</html>

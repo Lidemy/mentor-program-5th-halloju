@@ -1,0 +1,286 @@
+h2 {
+  margin: 0;
+}
+.navbar {
+  padding: 0px 24px;
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+  
+}
+
+.navbar .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 84px;
+  background-color: #ffffff;
+}
+
+.wrapper {
+  max-width: 1730px;
+  margin: 0 auto;
+  padding: 0px 12px;
+}
+
+.banner {
+  position: relative;
+  height: 580px;
+  background: url(img/2.png) center/cover no-repeat;
+}
+
+ 
+.banner h1 {
+  display: inline-block;
+  font-size: 60px;
+  font-weight: bold;
+  margin: 0px;
+  color: white;
+  z-index: 2;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.banner:after {
+  content: ' ';
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.botton {
+  display: inline-block;
+  padding: 60px 80px;
+  font-size: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.botton:hover {
+  transform: scale(1.1);
+}
+
+.btn-order {
+  background: #a8e8e1;
+}
+
+.btn-order a, .btn-query a{
+  text-decoration: none;
+  color: #3e613d;
+}
+
+.btn-query {
+  margin-left: 23px;
+  background: #f9f9b5;
+}
+
+.navbar_logal {
+  font-family: Questrial;
+  font-size: 36px;
+  color:#489846;
+  }
+
+.navbar_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+}
+
+.navbar_list li {
+  margin-left: 18px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.navbar_list li.active, .navbar_list li:hover {
+  background: #ff7286;
+}
+
+.navbar_list li.active a, .navbar_list li:hover a{
+  color: white;
+}
+
+.navbar_list li a {
+  padding: 12px 24px;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.section {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.section_title {
+  display: inline-block;
+  font-size: 36px;
+  border-left: solid 15px #a3dea2;
+  padding-left: 17px;
+  margin-bottom: 30px;
+}
+
+.section_desc {
+  font-size: 15px;
+  line-height: 2em;
+  margin: 0px 0px 68px 0px;
+}
+
+.section_imgs {
+  display: flex;
+}
+
+.section_imgs div{
+  width: 25%;
+}
+
+.section_imgs img {
+  width: 100%;
+}
+
+.section_comments {
+  display: flex;
+}
+
+.section_comment {
+  display: inline-block;
+  flex: 1;
+  height: 205px;
+  border: solid 1px #c7e5ec;
+  box-shadow: -1.4px -1.4px 4px 0 #d8eaef;
+  padding: 56px 19px 39px 24px;
+  box-sizing: border-box;
+  margin-left: 16px;
+  position: relative;
+  margin-top: 98px;
+}
+
+.section_img {
+  object-fit: contain;
+  border-radius: 50%;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 5px;
+}
+
+.section_comment .name {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 23px;
+}
+
+.section_comment p {
+  position: relative;
+  font-size: 16px;
+  letter-spacing: 0.14px;
+  line-height: 2em;
+  text-align: center;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+footer {
+ margin-top: 48px;
+}
+
+.footer_bottom {
+  background: #35564b;
+  color: white;
+  font-family: MicrosoftJhengHei;
+  font-size: 16px;
+  padding: 15px 0px;
+  text-align: center;
+  margin: 12px;
+}
+
+.footer_top {
+  background: #e8efee;
+  color: #484848;
+  padding: 44px;
+}
+
+.footer_top .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer_site {
+  font-family: Questrial;
+  font-size: 36px;
+  color: #489846;
+  margin-bottom: 10px;
+}
+
+.footer_media a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer_info {
+  margin-right: 16px;
+}
+
+.footer_info div + div {
+  margin-top: 10px;
+}
+
+@media(max-width: 768px) {
+  .navbar .wrapper {
+    flex-direction: column;
+    height: 120px;
+    justify-content: space-between;
+    padding: 0px;
+  }
+  
+  .navbar_list {
+    display: flex;
+    width: 100%;
+  }
+
+  .navbar_list li {
+    flex: 1;
+    margin-left: 0px;
+    text-align: center;
+  }
+
+  .navbar_logal {
+    margin-top: 10px;
+  }
+
+  .btn-query {
+    margin-left: 0px;
+    margin-top: 16px;
+  }
+
+  .section_imgs {
+    flex-direction: column;
+  }
+
+  .section_imgs div {
+    width: 100%;
+  }
+
+  .section_comments {
+    flex-direction: column;
+  }
+
+  .footer_top .wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .footer_info {
+    margin-right: 0px;
+    margin-top: 12px;
+  } 
+}
