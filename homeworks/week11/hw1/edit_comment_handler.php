@@ -13,11 +13,11 @@
   $id = $_POST['comment_id'];
   $page = $_POST['page'];
   if($user['role']==0) {
-    $sql = "UPDATE halloju_comments SET comment=? WHERE id=?";
+    $sql = "UPDATE halloju_comments SET comment=? WHERE id=? AND is_delete IS NULL";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('si', $comment, $id);
   } else {
-    $sql = "UPDATE halloju_comments SET comment=? WHERE id=? AND username=?";
+    $sql = "UPDATE halloju_comments SET comment=? WHERE id=? AND username=? AND is_delete IS NULL";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('sis', $comment, $id, $username);
   }

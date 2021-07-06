@@ -3,11 +3,13 @@
 	require_once('utils.php');
   session_start();
   $username = $_SESSION['username'];
+  $user = getUserFromUsername($username);
+
   $id = $_GET['id'];
   $page = $_GET['page'];
 	$sql = "SELECT C.comment AS comment, C.id AS id, C.username AS username ".
 				 "FROM halloju_comments AS C ". 
-				 "WHERE id = ?";
+				 "WHERE id = ? AND is_delete IS NULL";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param('i', $id);
   $stmt->execute();
@@ -17,6 +19,10 @@
 		die('Error:'.$conn->error);
 	}
   $row = $result->fetch_assoc();
+  if (empty($username)||($row['username']!=$username and $user['role']!=0)) {
+    header("Location: index.php");
+    exit;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -45,9 +51,9 @@
         }
     ?>
     <div>
-      <textarea class="add-comment" name="comment" cols="30" rows="10"><?php echo escape($row['comment']); ?></textarea>
-      <input type="hidden" name="comment_id" value="<?php echo escape($id); ?>">
-      <input type="hidden" name="page" value="<?php echo escape($page); ?>">
+      <textarea class="add-comment" name="comment" cols="30" rows="10"><?php echo htmlspecialchars($row['comment']); ?></textarea>
+      <input type="hidden" name="comment_id" value="<?php echo htmlspecialchars($id); ?>">
+      <input type="hidden" name="page" value="<?php echo htmlspecialchars($page); ?>">
     </div>
     <div><button class="btn">提交</button></div>
 	</form>

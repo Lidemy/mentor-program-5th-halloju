@@ -5,7 +5,7 @@
 	if(!empty($_GET['page'])) {
 		$page = intval($_GET['page']);
 	}
-	$num_per_page = 10;
+	$num_per_page = 5;
 	$offset = ($page - 1)*$num_per_page;
 
 	$sql = "SELECT C.username AS username, C.create_at AS create_at, ". 
@@ -64,7 +64,7 @@
 						<button class="btn">提交</button>
 				</form>
 			</div>
-			<div><h2> Hi! <?php echo $user['nickname']; ?></h2></div>
+			<div><h2> Hi! <?php echo htmlspecialchars($user['nickname']); ?></h2></div>
 		<?php	} ?>
 
 		<header>Comments</header>
@@ -96,16 +96,16 @@
 				<div class="comment">
 					<div class="navatar"></div>
 					<div class="comments-info">
-						<div class="nickname"><?php echo escape($row['nickname'].'(@'.$row['username'].')')?></div>
+						<div class="nickname"><?php echo htmlspecialchars($row['nickname'].'(@'.$row['username'].')')?></div>
 						<div class="create-at">
-							<?php echo escape($row['create_at']) ?>
-							<?php if($row['username']==$username or $user['role']==0) { ?>
-								<a href="edit_comment.php?id=<?php echo $row['id'] ?>&page=<?php echo escape($page) ?>" class="btn-comment">編輯</a>
-								<a href="delete_comment.php?id=<?php echo $row['id'] ?>&page=<?php echo escape($page) ?>" class="btn-comment">刪除</a>
+							<?php echo htmlspecialchars($row['create_at']) ?>
+							<?php if(!empty($username) && ($row['username']==$username || $user['role']==0)) { ?>
+								<a href="edit_comment.php?id=<?php echo htmlspecialchars($row['id']) ?>&page=<?php echo htmlspecialchars($page) ?>" class="btn-comment">編輯</a>
+								<a href="delete_comment.php?id=<?php echo htmlspecialchars($row['id']) ?>&page=<?php echo htmlspecialchars($page) ?>" class="btn-comment">刪除</a>
 							<?php } ?>
 						</div>
 						
-						<div class="comment-text"><?php echo escape($row['comment']) ?></div>
+						<div class="comment-text"><?php echo htmlspecialchars($row['comment']) ?></div>
 						
 					</div>
 				</div>
@@ -122,11 +122,11 @@
 		<div class='greeting'>
 			<?php if($page != 1) { ?>
 				<a class="btn" href="index.php?page=1">首頁</a>
-				<a class="btn" href="index.php?page=<?php echo escape($page-1); ?>">上一頁</a>
+				<a class="btn" href="index.php?page=<?php echo htmlspecialchars($page-1); ?>">上一頁</a>
 			<?php } ?>
 			<?php if($page != $last_page) { ?>	
-				<a class="btn" href="index.php?page=<?php echo escape($page+1); ?>">下一頁</a>
-				<a class="btn" href="index.php?page=<?php echo escape($last_page); ?>">末頁</a>
+				<a class="btn" href="index.php?page=<?php echo htmlspecialchars($page+1); ?>">下一頁</a>
+				<a class="btn" href="index.php?page=<?php echo htmlspecialchars($last_page); ?>">末頁</a>
 			<?php } ?>
 		</div>
 	</div>
