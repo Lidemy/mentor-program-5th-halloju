@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.board {
+  max-width: 730px;
+  margin: 0 auto;
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+  padding: 24px;
+  margin-top: 5%;
+}
+
+header {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.add-comment {
+  width: 480px;
+  border:solid 1px rgb(163, 219, 245);
+}
+
+.btn {
+  text-decoration: none;
+  padding: 4px;
+  background: white;
+  border:solid 1px rgb(163, 219, 245);
+  margin: 24px 0px;
+}
+
+a.btn {
+  color: black;
+}
+
+.comment {
+  margin: 18px 0px;
+  display: flex;
+}
+
+.navatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgb(163, 219, 245);
+  margin-right: 12px;
+}
+
+.comments-info {
+  padding: 12px;
+  
+}
+
+.create-at {
+  display: inline-block;
+  color: #97a2a0;
+}
+
+.nickname {
+  display: inline-block;
+  color: rgb(163, 219, 245);
+}
+
+.comment-text {
+  width: 300px;
+  margin-top: 4px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.register_input {
+  margin: 12px 0px;
+}
+
+.warning {
+  font-size: 36px;
+  color: red;
+}
+
+.greeting {
+  display: inline-block;
+  margin: 36px 0px;
+}
+
+.hide {
+  display: none;
+}
+
+.update-nickname {
+  cursor: pointer;
+}
+
+.btn-comment {
+  text-decoration: none;
+  color: rgb(163, 219, 245);
+}
