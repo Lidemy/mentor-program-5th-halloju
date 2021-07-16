@@ -1,0 +1,109 @@
+h1, h2, p {
+  margin: 0;
+}
+
+.wrapper {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.form {
+  box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+  padding: 24px;
+  margin: 10% 12px;
+  border-radius: 8px;
+  background: antiquewhite;
+ }
+
+header {
+  color: rgb(149, 130, 122);
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.add-section {
+  border: none;
+  background: antiquewhite;
+  width: 100%;
+  font-size: 24px;
+  text-align: left;
+  border-bottom: solid 1px rgba(180, 170, 156, 0.3);
+  color: rgba(149, 130, 122, 0.8);
+  margin-bottom: 24px;
+}
+
+.add-section:focus {
+  outline: none;
+}
+
+.add-section::placeholder {
+  color: rgba(167, 158, 145, 0.5);
+}
+
+.todo-section {
+  display: flex;
+  color: rgb(149, 130, 122);
+  font-size: 24px;
+  align-items: center;
+  padding-left: 4px;
+  padding-right: 16px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.deletebox {
+  border: none;
+  background: none;
+  color: rgb(149, 130, 122);
+  float: right;
+  position: absolute;
+  right: 0;
+  font-size: 24px;
+}
+
+.deletebox:hover {
+  cursor: pointer;
+}
+
+.checkbox {
+  content: '';
+  border: none;
+  background: none;
+  border: solid 1px  rgb(149, 130, 122);
+  height: 20px;
+  width: 20px;
+  margin-right: 4px;
+  border-radius: 10%;
+}
+
+.checkbox:hover {
+  cursor: pointer;
+}
+
+.finished {
+  color: rgba(149, 130, 122, 0.3);
+}
+
+.finished div:nth-child(2) {
+  position: relative;
+  text-decoration: line-through;
+}
+
+.finished .checkbox {
+  border: solid 1px  rgba(149, 130, 122, 0.3);
+}
+
+.finished .checkbox:before {
+  content: "\2713";
+  color: rgba(149, 130, 122, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50%, 0%);
+}
+
+.todo-section:hover {
+  background: rgb(251, 234, 212);
+  box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+}

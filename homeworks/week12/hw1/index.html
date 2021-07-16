@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>留言板</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div class="container">
+		<form class="add-comment-form">
+			<div class="input-group mt-3">
+				<span class="input-group-text">暱稱</span>
+				<input class="form-control" aria-label="With textarea" name="nickname" rows="10"></input>
+			</div>
+			<div class="input-group mt-3">
+				<span class="input-group-text">留言</span>
+				<textarea class="form-control" aria-label="With textarea" rows="10" name="comment"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary mt-3">送出</button>
+		</form>
+
+		<div class="comments">
+		</div>
+		<div class="more-queries mt-1 mb-2" style="display: none;">
+			<button type="submit" class="btn btn-primary mt-3">載入更多</button>
+		</div>
+	</div>	
+</body>
+
+<script>
+	function escapeHtml(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+	}
+
+	function appendCommentToDOM(container, comment, isAppend=true) {
+		content = `
+					<div class="card mt-2 mb-1">
+						<div class="card-body">
+							<h5 class="card-title">${escapeHtml(comment.nickname)}</h5>
+							<p class="card-text">${escapeHtml(comment.comment)}</p>
+						</div>
+					</div>
+				`
+		if (isAppend) {
+			container.append(content)
+		} else {
+			container.prepend(content)
+		}
+	} 
+
+	function showButton(commentsLength, max_length, cls) {
+		if (commentsLength > max_length) {
+			cls.show()
+		} else {
+			cls.hide()
+		}
+	}
+
+	function getCommentsAPI(siteKey, id, cb) {
+		url = `http://mentor-program.co/mtr04group1/halloju/week12/hw1/api_comments.php?site_key=${siteKey}`
+		if (typeof id !== 'undefined') {
+			url+=`&id=${id}`
+		}
+		$.ajax({
+			url: url,
+		}).done(function(data) {
+			cb(data)
+		})
+	}
+
+	function getComments(data) {
+		if(!data.ok) {
+			alert(data.message)
+			return
+		}
+		const comments = data.data
+		for (let i = 0; i < Math.min(max_length,comments.length); i++) {
+			appendCommentToDOM(commentDOM, comments[i])
+			id = comments[i].id
+		}
+		showButton(comments.length, max_length, $('.more-queries'))
+	}
+
+
+	const commentDOM = $('.comments')
+	var id
+	const max_length = 5
+	const siteKey = "halloju"
+	getCommentsAPI(siteKey, id, getComments)
+
+	$('.add-comment-form').submit(e =>{
+		e.preventDefault();
+		const commentData = {
+			site_key: "halloju",
+			nickname: $('input[name=nickname]').val(),
+			comment: $('textarea[name=comment]').val()
+		}
+				
+		$.ajax({
+			type: "POST",
+			url: "http://mentor-program.co/mtr04group1/halloju/week12/hw1/add_comments.php",
+			data: commentData
+		}).done(function( data ) {
+			if (!data.ok) {
+				alert(data.message)
+				return
+			}
+			appendCommentToDOM(commentDOM, commentData, false)
+			$('input[name=nickname]').val("")
+			$('textarea[name=comment]').val("")
+		})
+	})
+
+	$('.more-queries').click(e =>{
+		e.preventDefault()
+		getCommentsAPI(siteKey, id, getComments)
+	})
+</script>
+</html>
