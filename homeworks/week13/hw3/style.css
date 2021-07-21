@@ -1,0 +1,208 @@
+h2 {
+  margin: 0;
+}
+
+html {
+  cursor: none;
+}
+
+a {
+  cursor: none;
+}
+
+.cursor {
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  background-color: rgba(89, 151, 223, 0.678);
+  position: absolute;
+  z-index: 100;
+}
+
+.navbar {
+  padding: 0px 24px;
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+}
+
+.navbar .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  background-color: #ffffff;
+}
+
+.wrapper {
+  max-width: 1730px;
+  margin: 0 auto;
+  padding: 0px 12px;
+}
+
+.navbar-logal {
+  font-family: Questrial;
+  font-size: 36px;
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+}
+
+.navbar-list li {
+  margin-left: 18px;
+  transition: background 0.5s;
+  position: relative;
+}
+
+.navbar-list li:hover {
+  background: #51575d;
+}
+
+.navbar-list li:hover a{
+  color: white;
+}
+
+.navbar-list li a {
+  padding: 12px 24px;
+  display: block;
+  text-decoration: none;
+  color: black;
+  cursor: none;
+}
+
+.top-streamings {
+  background: rgb(75, 72, 72);
+  padding: 88px;
+  cursor: none;
+}
+
+.name-of-the-game {
+  color: white;
+  font-size: 44px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.card {
+  margin: 18px;
+  box-shadow: -1.4px -1.4px 6px 0 #e9eeed;
+  cursor: none;
+  display: inline-block;
+  max-width: 368px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transform-origin: bottom;
+  transition: transform 0.5s ease-in-out;
+}
+
+.thumbnail {
+  width: 368px;
+  height: 196px;
+  padding: 0;
+}
+
+.thumbnail img {
+  width: 368px;
+  height:100%;
+  margin: 0 auto;
+}
+
+.channel-info {
+  display: flex;
+  height: 84px;
+  background: rgb(34, 32, 32);
+  padding: 8px;
+}
+
+.logo {
+  flex: 1;
+  clip-path: circle(42px at center);
+  position: relative;
+}
+
+.logo img {
+  max-width:100%;
+  max-height:100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin: 0;
+}
+
+.info {
+  flex: 3;
+  align-items: center;
+  width: 352px;
+}
+
+.streaming-name {
+  max-height: 70%;
+  font-size: 15px;
+  color: white;
+  padding: 8px;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.channel-name {
+  font-size: 12px;
+  color: white;
+  height: 50%;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+@media(max-width: 768px) {
+  .navbar .wrapper {
+    flex-direction: column;
+    height: 160px;
+    justify-content: space-between;
+    padding: 0px;
+  }
+  
+  .navbar-list {
+    display: flex;
+    width: 100%;
+  }
+
+  .navbar-list li {
+    flex: 1;
+    margin-left: 0px;
+    text-align: center;
+  }
+
+  .navbar-logal {
+    margin-top: 10px;
+  }
+
+  .top-streamings {
+    flex-direction: column;
+    max-width: 100%;
+    align-items: center;
+    display: flex;
+  }
+
+  .footer-top .wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .footer-info {
+    margin-right: 0px;
+    margin-top: 12px;
+  } 
+}
