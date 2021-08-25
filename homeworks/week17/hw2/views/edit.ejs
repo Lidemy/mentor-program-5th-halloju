@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+</head>
+
+<body>
+  <nav class="navbar">
+    <%- include('template/navbar') %>
+  </nav>
+  <section class="banner">
+    <div class="banner__wrapper">
+      <div class="lottery-info">
+        <% if(errorMessage && errorMessage.length > 0) { %>
+              <div class="warning"><%= errorMessage %></div>
+        <% } %>
+        <div class="lottery-section">  
+          <section class="banner">
+            <div class="lottery_form">
+              <% if (typeof prize !== 'undefined') { %>
+                <form class="lottery-head" action="/prize/handelUpdate/<%= prize.id%>" method="POST">
+                <% } else { %>
+                  <form class="lottery-head" action="/prize/create" method="POST">
+                <% } %>
+                <div class="lottery-info">
+                  <div>獎項名稱<br></div>
+                  <% if(typeof prize !== 'undefined'){ %>
+                    <input class="lottery-info__content" type="text" name="name" value="<%= prize.name%>" />
+                  <% }else { %>
+                    <input class="lottery-info__content" type="text" name="name" />
+                  <% } %>
+                </div>
+                <div class="lottery-info">
+                  <div>第幾獎<br></div>
+                  <% if(typeof prize !== 'undefined'){ %>
+                    <input class="lottery-info__content" type="number" name="prize" value="<%= prize.prize%>" />
+                  <% }else { %>
+                    <input class="lottery-info__content" type="number" name="prize" />
+                  <% } %>
+                </div>
+                <div class="lottery-info">
+                  <div>獎項數量<br></div>
+                  <% if(typeof prize !== 'undefined'){ %>
+                    <input class="lottery-info__content" type="number" name="num" value="<%= prize.num%>" />
+                  <% }else { %>
+                    <input class="lottery-info__content" type="number" name="num" />
+                  <% } %>
+                </div>
+                <div class="lottery-info">
+                  <div>獎項說明<br></div>
+                  <% if(typeof prize !== 'undefined'){ %>
+                    <input class="lottery-info__content" type="text" name="descriptions" value="<%= prize.descriptions%>" />
+                  <% }else { %>
+                    <input class="lottery-info__content" type="text" name="descriptions" />
+                  <% } %>                  
+                </div>
+                <div class="lottery-info">
+                  <div>獎項價格<br></div>
+                  <% if(typeof prize !== 'undefined'){ %>
+                    <input class="lottery-info__content" type="text" name="price" value="<%= prize.price%>" />
+                  <% }else { %>
+                    <input class="lottery-info__content" type="text" name="price" />
+                  <% } %> 
+                </div>
+                <div class="lottery-info">
+                  <div>中獎說明<br></div>
+                  <% if(typeof prize !== 'undefined'){ %>
+                    <input class="lottery-info__content" type="text" name="headline" value="<%= prize.headline%>" />
+                  <% }else { %>
+                    <input class="lottery-info__content" type="text" name="headline" />
+                  <% } %> 
+                </div>
+                <div class="lottery-info">
+                  <div>背景圖 url<br></div>
+                  <% if(typeof prize !== 'undefined'){ %>
+                    <input class="lottery-info__content" type="text" name="imgUrl" value="<%= prize.imgUrl%>" />
+                  <% }else { %>
+                    <input class="lottery-info__content" type="text" name="imgUrl" />
+                  <% } %> 
+                </div>
+                <div class="lottery-info">
+                  <div>中獎機率<br></div>
+                  <% if(typeof prize !== 'undefined'){ %>
+                    <input class="lottery-info__content" type="number" step="0.01" name="prob" value="<%= prize.prob%>" />
+                  <% }else { %>
+                    <input class="lottery-info__content" type="number" step="0.01" name="prob" />
+                  <% } %> 
+                </div>
+                <input type="submit" value="增加獎項">
+              </form>
+            </div>
+          </section>
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
+  
+</body>
+</html>

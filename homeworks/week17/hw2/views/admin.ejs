@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+</head>
+
+<body>
+  <nav class='navbar'>
+    <div class="wrapper">
+      <div class='navbar-logal'>
+        Just a Bite!
+      </div>
+      <ul class='navbar-list'>
+        <% if (username) { %>
+          <li><a href="/prize/logout">登出</a> </li>
+          <li><a href="/prize/edit">新增獎項</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+  <div class="lottery-section">  
+    <section class="banner">
+      <div class="lottery">
+        <div class="lottery-info__content">
+          <% for (let prize of prizes) { %>
+          <div class="admin-post"><%= `${prize.name}${prize.descriptions}` %></div>
+          <a class="admin-post__btn" href="/prize/edit/<%= prize.id%>">
+            編輯
+          </a>
+          <a class="admin-post__btn" href="/prize/delete/<%= prize.id%>">
+            刪除
+          </a>
+          <br>
+          <% } %>
+        </div>
+ 
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="wrapper">
+        <div class="footer-info">
+          <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+          <div>訂位專線：02-1314-5566</div>
+          <div>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</div>
+          <div>email：service@justabite.com.tw</div>
+        </div>
+        <div>
+          <div class="footer-site">Just A Bite!</div>
+          <div class="footer-media">
+            <a href="#">facebook</a> / 
+            <a href="#">Instagram</a> / 
+            <a href="#">Youtube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有
+    </div>
+  </footer>
+</body>
+</html>
+

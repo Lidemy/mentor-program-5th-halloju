@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+</head>
+
+<body>
+  <nav class="navbar">
+    <%- include('template/navbar') %>
+  </nav>
+  <section class="banner">
+    <div class="banner__wrapper">
+      <h1>存放技術之地</h1>
+      <div>Welcome to my blog</div>
+    </div>
+  </section>
+  <div class="container-wrapper">
+    <div class="container">
+      <div class="admin-posts">
+      <% for (let article of articles) { %>
+        <div class="admin-post">
+          <div class="admin-post__title">
+              <a class="read-more" href="/blog/show/<%=article.id %>"><%=article.title %></a>
+          </div>
+          <div class="admin-post__info">
+            <div class="admin-post__created-at">
+              <%= article.createAt %>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      </div>
+    </div>
+  </div>
+  <footer>Copyright © 2020 Who's Blog All Rights Reserved.</footer>
+</body>
+</html>
