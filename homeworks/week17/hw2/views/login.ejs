@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+</head>
+
+<body>
+  <nav class="navbar">
+    <%- include('template/navbar') %>
+  </nav>
+  <section class="banner">
+    <div class="banner__wrapper">
+      <div class="lottery-info">
+        <% if(errorMessage && errorMessage.length > 0) { %>
+              <div class="warning"><%= errorMessage %></div>
+        <% } %>
+        <div class="lottery-section">  
+          <section class="banner">
+            <div class="lottery_form">
+              <form class="lottery-head" action="/prize/login" method="POST">
+                <div class="lottery-info">
+                  <div>USERNAME<br></div>
+                  <input class="lottery-info__content" type="text" name="username" />
+                </div>
+                
+                <div class="lottery-info">
+                  <div>PASSWORD<br></div>
+                  <input class="lottery-info__content" type="password" name="password" />
+                </div>
+                <input type='submit' value="登入" />
+              </form>
+            </div>
+          </section>
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
+  
+</body>
+</html>

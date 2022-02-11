@@ -1,0 +1,20 @@
+<div class="wrapper navbar__wrapper">
+  <div class="navbar__site-name">
+    <a href='/blog'>Who's Blog</a>
+  </div>
+  <ul class="navbar__list">
+    <div>
+      <li><a href="/blog/article_list">文章列表</a></li>
+      <li><a href="#">分類專區</a></li>
+      <li><a href="#">關於我</a></li>
+    </div>
+    <div>
+      <% if(username) { %>
+        <li><a href="/blog/logout">登出</a></li>
+        <li><a href="/blog/admin">管理後台</a></li>
+      <% } else { %>
+        <li><a href="/blog/login">登入</a></li>
+      <% } %>
+    </div>
+  </ul>
+</div>
